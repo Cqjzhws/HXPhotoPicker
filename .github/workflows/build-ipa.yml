@@ -16,11 +16,11 @@ jobs:
       - name: Build (no code signing)
         run: |
           set -o pipefail
-          xcodebuild -workspace HXPhotoPickerExample.xcworkspace \\
-            -scheme HXPhotoPickerExample \\
-            -configuration Release -sdk iphoneos \\
-            -derivedDataPath build \\
-            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \\
+          xcodebuild -workspace HXPhotoPickerExample.xcworkspace \
+            -scheme HXPhotoPickerExample \
+            -configuration Release -sdk iphoneos \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO \
             | tail -50
 
       - name: Package IPA
@@ -38,4 +38,3 @@ jobs:
           name: hxphotopicker-ipa
           path: HXPhotoPicker-unsigned.ipa
           retention-days: 7
-''

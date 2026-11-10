@@ -1,0 +1,10 @@
+name: probe-macos
+on:
+  workflow_dispatch:
+
+jobs:
+  t:
+    runs-on: macos-latest
+    steps:
+      - run: uname -a
+      - run: xcodebuild -version

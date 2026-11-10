@@ -22,13 +22,11 @@ xcodebuild -version
 sw_vers
 
 echo "==== pods ===="
+# 仓库内提交的 Pods.xcodeproj 是过期快照（引用了已不存在的 ExpandButton.swift），
+# 必须按当前源码树重建，否则 xcodebuild 直接报 Build input file cannot be found。
 if [ -f Podfile ]; then
-  if [ ! -f "Pods/Manifest.lock" ] || [ "Podfile.lock" -nt "Pods/Manifest.lock" ]; then
-    echo "Pods 与 Podfile.lock 不一致，重新 pod install"
-    pod install
-  else
-    echo "Pods 已就绪（本地 podspec，无外部依赖）"
-  fi
+  echo "强制 pod install，按当前源码树重建 Pods 工程"
+  pod install
 fi
 
 echo "==== build ===="
